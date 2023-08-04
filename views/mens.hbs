@@ -1,6 +1,8 @@
-<h1>{{projectTitle}}</h1>
-<p>Welcome to {{projectTitle}}</p>
-<p>Product name is {{product.name}}</p>
-<p>Image link is {{productImg}}</p>
-<img src="{{productImg}}" alt="">
+<h1>{{menCategory.page_title}}</h1>
+<p>{{menCategory.page_description}}</p>
+  <ul>
+    {{#each menCategory.categories}}
+      <li><a href="/{{this.id}}">{{this.name}}</a></li>
+    {{/each}}
+  </ul>
 

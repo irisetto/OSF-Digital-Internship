@@ -1,8 +1,31 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: inherit;
+}
+nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.menu-categ{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color:black !important;
+  list-style-type: none;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+}
+.menu-categ li{
+  border: 1px solid black;
+  padding: 10px 20px;
+  border-radius: 25px;
 }
