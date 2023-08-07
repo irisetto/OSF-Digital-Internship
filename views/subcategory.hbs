@@ -1,0 +1,25 @@
+<div class="subcategory-page">
+<h1>{{category.page_title}}</h1>
+<p>{{category.page_description}}</p>
+{{#if subcategoryImg}}
+<img src="../images/{{subcategoryImg}}" class="subcategory-img">
+ {{/if}}
+  <ul class="subcategory-list">
+    {{#each category.categories}}
+      <li class="subcategory">
+        <a href="/{{this.parent_category_id}}/{{this.id}}" class="subcategory-name">{{this.name}}</a>
+      <div>
+        {{#if this.image}}
+
+        <img src="../images/{{this.image}}" class="subcategory-img">
+         {{/if}}
+
+        </div>
+      <p>{{this.page_description}}</p>
+      <button>View products</button>
+      <span></span>
+      </li>
+    {{/each}}
+  </ul>
+  
+</div>

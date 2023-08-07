@@ -5,24 +5,24 @@ var mongoose = require('mongoose')
   const CategoryModel = require('../models/category')
 const retrieveDocument = async () => {
   
-  return await CategoryModel.findOne({id: 'mens'});
+  return await CategoryModel.findOne({id: 'womens'});
 }
+
 router.get('/', async function(req, res, next) {
   const category = await retrieveDocument();
   console.log(category)
-  res.render('category', { title:'Men',projectTitle: 'Shop', category: category});
+  res.render('category', { title:'Women',projectTitle: 'Shop', category: category});
 });
 
 router.get('/:category', async function(req, res, next) {
   const categoryID = req.params.category;
   const category = await CategoryModel.findOne(
-    { id: 'mens' ,
+    { id: 'womens' ,
       categories:{$elemMatch:{id:categoryID}}
     },
     { "categories.$": 1 }
     ).lean();
   const subcategory = category.categories[0];
-  res.render('subcategory', { title:`Men ${subcategory.name}`,projectTitle: 'Shop', category: subcategory, subcategoryImg: subcategory.image});
+  res.render('subcategory', { title:`Women ${subcategory.name}`,projectTitle: 'Shop', category: subcategory, subcategoryImg: subcategory.image});
 });
-
 module.exports = router;

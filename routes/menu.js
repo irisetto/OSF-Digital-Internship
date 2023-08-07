@@ -12,7 +12,6 @@ const head = fs.readFileSync('D:\\teo\\OSF\\views\\partials\\head.hbs','utf8');
   handlebars.registerPartial('menu', menu);
   handlebars.registerPartial('head', head);
 
-console.log(menu);
 router.use(async function(req, res, next) {
     try {
   const CategoryModel = require('../models/category')
