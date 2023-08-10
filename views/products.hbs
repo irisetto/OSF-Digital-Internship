@@ -2,13 +2,15 @@
   {{!-- <p>Home/{{linkCateg}}/{{category.name}}</p> --}}
 {{!-- <h1>{{category.page_title}}</h1>
 <p>{{category.page_description}}</p> --}}
+  <p>Home/{{linkCateg}}/{{linkCateg2}}/{{linkSubcateg}}</p>
 
   <ul class="product-list">
     {{#each products}}
       <li class="product">
         <p class="product-name">{{this.name}}</p>
-      
-      <p>{{this.page_description}}</p>
+  <img src="../images/{{../productImg}}">
+
+        <p>{{this.page_description}}</p>
       <span></span>
       </li>
     {{/each}}

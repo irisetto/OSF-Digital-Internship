@@ -8,7 +8,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var menRouter = require('./routes/men');
 var womenRouter = require('./routes/women');
-var productsRouter = require('./routes/products');
 
 var menuRouter = require('./routes/menu');
 
