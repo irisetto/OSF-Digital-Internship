@@ -1,4 +1,5 @@
 <div class="subcategory-page">
+  <p>Home/{{linkCateg}}/{{category.name}}</p>
 <h1>{{category.page_title}}</h1>
 <p>{{category.page_description}}</p>
 {{#if subcategoryImg}}
@@ -7,7 +8,7 @@
   <ul class="subcategory-list">
     {{#each category.categories}}
       <li class="subcategory">
-        <a href="/{{this.parent_category_id}}/{{this.id}}" class="subcategory-name">{{this.name}}</a>
+        <p class="subcategory-name">{{this.name}}</p>
       <div>
         {{#if this.image}}
 
@@ -16,7 +17,9 @@
 
         </div>
       <p>{{this.page_description}}</p>
+      <a href="/{{../rootRoute}}/{{this.parent_category_id}}/{{this.id}}">
       <button>View products</button>
+      </a>
       <span></span>
       </li>
     {{/each}}

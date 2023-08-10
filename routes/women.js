@@ -23,6 +23,6 @@ router.get('/:category', async function(req, res, next) {
     { "categories.$": 1 }
     ).lean();
   const subcategory = category.categories[0];
-  res.render('subcategory', { title:`Women ${subcategory.name}`,projectTitle: 'Shop', category: subcategory, subcategoryImg: subcategory.image});
+  res.render('subcategory', { rootRoute:"womens",linkCateg:"Womens",title:`Women ${subcategory.name}`,projectTitle: 'Shop', category: subcategory, subcategoryImg: subcategory.image});
 });
 module.exports = router;

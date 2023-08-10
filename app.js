@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var menRouter = require('./routes/men');
 var womenRouter = require('./routes/women');
+var productsRouter = require('./routes/products');
 
 var menuRouter = require('./routes/menu');
 
@@ -16,7 +17,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.set('debug', true);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,9 +27,11 @@ app.use(menuRouter);
 app.use('/', indexRouter);
 app.use('/mens', menRouter);
 app.use('/mens/:category', menRouter);
+app.use('/mens/:category/:subcategory', menRouter);
 
 app.use('/womens', womenRouter);
 app.use('/womens/:category', womenRouter);
+app.use('/womens/:category/:subcategory', womenRouter);
 
 app.use('/users', usersRouter);
 
