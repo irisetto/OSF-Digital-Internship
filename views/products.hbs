@@ -1,19 +1,45 @@
 <div class="products-page">
-  {{!-- <p>Home/{{linkCateg}}/{{category.name}}</p> --}}
-{{!-- <h1>{{category.page_title}}</h1>
-<p>{{category.page_description}}</p> --}}
+
   <p>Home/{{linkCateg}}/{{linkCateg2}}/{{linkSubcateg}}</p>
 
-  <ul class="product-list">
+  <ul class="products-list">
     {{#each products}}
-      <li class="product">
-        <p class="product-name">{{this.name}}</p>
-  <img src="../images/{{../productImg}}">
+    <li>
+      <p class="product-name">{{this.name}}</p>
+      <div class="product">
+        <div  class="product-img">
+          {{#assign 'mediumImageFound' ''}}  
+           {{/assign}}   
+          {{#each image_groups}}  
+          {{#unless @root.mediumImageFound}}
+          {{#ifeq this.view_type "medium"}}        
+          {{#with images.[0]}} 
+           {{#assign 'mediumImageFound' 'true'}}  
+           {{/assign}}        
+           <img src="../../images/{{link}}" alt="Product Image" class="product-img"> 
+            
+          {{/with}}
+          {{/ifeq}}
+            {{/unless}}
 
-        <p>{{this.page_description}}</p>
-      <span></span>
-      </li>
+          {{/each}}
+        </div>
+
+        <div>
+
+          <p class="product-desc">{{this.page_description}}</p>
+          <div class="price-info">
+            {{#ifeq this.currency "USD"}}
+            <p>Price: $ {{this.price}}</p>
+            {{/ifeq}}
+            <a href="/{{../rootRoute}}/{{../linkCateg2ID}}/{{this.primary_category_id}}/{{this.id}}" class="more-info">
+              <button class="more-info">More Info</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
     {{/each}}
   </ul>
-  
+
 </div>

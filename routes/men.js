@@ -4,7 +4,18 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/shop");
 const CategoryModel = require("../models/category");
 const ProductModel = require("../models/product");
+const handlebars = require('hbs')
 
+handlebars.registerHelper('ifeq', function (a, b, options) {
+  if (a == b) { return options.fn(this); }
+  return options.inverse(this);
+});
+handlebars.registerHelper('assign', function (varName, varValue, options) {
+  if (!options.data.root) {
+      options.data.root = {};
+  }
+  options.data.root[varName] = varValue;
+});
 const retrieveDocument = async () => {
   return await CategoryModel.findOne({ id: "mens" });
 };
@@ -48,11 +59,7 @@ router.get("/:category/:subcategory", async function (req, res, next) {
     const products = await ProductModel.find({
       primary_category_id: subcategory,
     }).lean();
-    const modifiedProducts = products.map((product) => {
-      // Access the nested property and assign it to a new property
-      product.imageLink = product.image_groups[2].images[0].link;
-      return product;
-    });
+ 
 
     const subcategoryName = await CategoryModel.aggregate([
       {
@@ -87,19 +94,72 @@ router.get("/:category/:subcategory", async function (req, res, next) {
       { "categories.$": 1 }
     ).lean();
     const linkCateg2 = categoryName?.categories[0];
-    console.log(modifiedProducts);
+  
     res.render("products", {
       projectTitle: "Shop",
       title: linkSubcateg,
+      rootRoute: "mens",
       linkCateg: "Mens",
       linkCateg2: linkCateg2?.name,
+      linkCateg2ID: linkCateg2?.id,
+
       linkSubcateg: linkSubcateg,
       products: products,
-      productImg:modifiedProducts.imageLink,
     });
   } catch (err) {
     console.error("Error fetching products:", err);
     res.status(500).send("Internal Server Error");
   }
 });
+
+router.get("/:category/:subcategory/:productID", async function (req, res, next) {
+  const productID = req.params.productID;
+  const subcategory = req.params.subcategory;
+  const category = req.params.category;
+
+  try {
+    const product = await ProductModel.findOne({
+      id: productID,
+    }).lean();
+
+    const subcategoryName = await CategoryModel.aggregate([
+      {
+        $match: {
+          id: "mens",
+        },
+      },
+      {
+        $unwind: "$categories", // Unwind the first level of categories array
+      },
+      {
+        $unwind: "$categories.categories", // Unwind the second level of categories array
+      },
+      {
+        $match: {
+          "categories.id": category,
+          "categories.categories.id": subcategory,
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          subcategoryName: "$categories.categories.name",
+        },
+      },
+    ]);
+
+    const linkSubcateg = subcategoryName[0]?.subcategoryName;
+
+    res.render("product", {
+      projectTitle: "Shop",
+      title: product.name,
+      subcategName:linkSubcateg,
+      product: product,
+    });
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = router;

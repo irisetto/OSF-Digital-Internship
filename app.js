@@ -27,10 +27,12 @@ app.use('/', indexRouter);
 app.use('/mens', menRouter);
 app.use('/mens/:category', menRouter);
 app.use('/mens/:category/:subcategory', menRouter);
+app.use('/mens/:category/:subcategory/:productID', menRouter);
 
 app.use('/womens', womenRouter);
 app.use('/womens/:category', womenRouter);
 app.use('/womens/:category/:subcategory', womenRouter);
+app.use('/womens/:category/:subcategory/:productID', womenRouter);
 
 app.use('/users', usersRouter);
 
