@@ -24,10 +24,16 @@
       <p class="product-page-name">{{product.name}}</p>
       <p class="product-page-desc">{{product.page_description}}</p>
       <div class="buy-price">
-        <button class="buy-button">Buy now</button>
-        {{#ifeq product.currency "USD"}}
-          <p class="price">Price: $ {{product.price}}</p>
-        {{/ifeq}}
+        <button class="buy-button view-products">Buy now</button>
+        <div class="price-container">
+          <p class="price">Price:<span class="currency-symbol"> $ </span><span class="price-amount">{{product.price}}</span></p>
+           <select id="currency-selector">
+      <option value="USD" >USD</option>
+      <option value="EUR">EUR</option>
+      <option value="RON" >RON</option>
+      <option value="GBP">GBP</option>
+    </select>
+    </div>
       </div>
     </div>
   </div>

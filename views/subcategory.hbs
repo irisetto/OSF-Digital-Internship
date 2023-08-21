@@ -8,6 +8,7 @@
   <ul class="subcategory-list">
     {{#each category.categories}}
       <li class="subcategory">
+         
         <p class="subcategory-name">{{this.name}}</p>
       <div>
         {{#if this.image}}
@@ -18,9 +19,9 @@
         </div>
       <p>{{this.page_description}}</p>
       <a href="/{{../rootRoute}}/{{this.parent_category_id}}/{{this.id}}">
-      <button>View products</button>
+      <button class="view-products">View products</button>
       </a>
-      <span></span>
+     
       </li>
     {{/each}}
   </ul>

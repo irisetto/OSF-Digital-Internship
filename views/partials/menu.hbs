@@ -1,9 +1,14 @@
-
 <nav>
-  <h1>{{projectTitle}}</h1>
+  <div class="nav"><h1>{{projectTitle}}</h1>
   <ul class="menu-categ">
     {{#each categories}}
-      <a href="/{{this.id}}"><li>{{this.name}}</li></a>
+      <a href="/{{this.id}}">
+      <li class="button menu-button">
+        <label>{{this.name}}</label>
+        <div class="border menu-button"></div>
+        </li>
+        </a>
     {{/each}}
   </ul>
+  </div>
 </nav>

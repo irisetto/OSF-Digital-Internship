@@ -6,11 +6,14 @@ const fs = require('fs');
 const handlebars = require('hbs')
 const menu = fs.readFileSync('D:\\teo\\OSF\\views\\partials\\menu.hbs','utf8');
 const head = fs.readFileSync('D:\\teo\\OSF\\views\\partials\\head.hbs','utf8');
+const footer = fs.readFileSync('D:\\teo\\OSF\\views\\partials\\footer.hbs','utf8');
 
    const mongoose = require('mongoose')
   mongoose.connect('mongodb://127.0.0.1:27017/shop');
-  handlebars.registerPartial('menu', menu);
+  handlebars.registerPartial('menu', menu); 
+  handlebars.registerPartial('footer', footer);
   handlebars.registerPartial('head', head);
+ 
 
 router.use(async function(req, res, next) {
     try {
