@@ -27,7 +27,7 @@ router.get("/", async function (req, res, next) {
   console.log(category);
   res.render("category", {
     title: "Women",
-    projectTitle: "Shop",
+    projectTitle: "OSF Shop",
     category: category,
   });
 });
@@ -43,7 +43,7 @@ router.get("/:category", async function (req, res, next) {
     rootRoute: "womens",
     linkCateg: "Womens",
     title: `Women ${subcategory?.name}`,
-    projectTitle: "Shop",
+    projectTitle: "OSF Shop",
     category: subcategory,
     subcategoryImg: subcategory?.image,
   });
@@ -92,7 +92,7 @@ router.get("/:category/:subcategory", async function (req, res, next) {
     ).lean();
     const linkCateg2 = categoryName.categories[0];
     res.render("products", {
-      projectTitle: "Shop",
+      projectTitle: "OSF Shop",
       title: linkSubcateg,
       rootRoute: "womens",
       linkCateg: "Womens",
@@ -147,7 +147,7 @@ router.get("/:category/:subcategory/:productID", async function (req, res, next)
     const linkSubcateg = subcategoryName[0]?.subcategoryName;
 
     res.render("product", {
-      projectTitle: "Shop",
+      
       title: product.name,
       subcategName:linkSubcateg,
       product: product,

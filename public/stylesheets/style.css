@@ -1,3 +1,12 @@
+@keyframes animationgradienttitle {
+  0% {
+      background-position: 0 1600px;
+  }
+  100% {
+      background-position: 1600px 0;
+  }
+}
+
 body {
   overflow-x: hidden;
   width: 100vw;
@@ -8,10 +17,59 @@ padding: 0;
 margin: 0;
 background-color: #f1f1f1;
 }
+.index-page{
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-family: 'Montserrat';
+
+}
+.index-page-grid{ 
+  width: 100%;
+  position: relative;
+
+  height: 100%;
+  display: grid;
+grid-template-columns: 40% 60%;
+justify-items: center;
+align-items: center;
+
+
+}
+
+.index-img {
+  width: 150%;
+margin:0;
+object-fit: cover;
+}
+.index-logo h1{
+  position: relative;
+  text-shadow: 3px 3px 18px rgb(224, 224, 224);
+
+  font-family: 'Borel';
+z-index: 1;
+font-size: 60px;
+}
+
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.home-text {
+  
+  color: #3835fc;
+  background: -webkit-linear-gradient(left, #46a8d6,#1827ac , #2440e0);
+  background-size: 1600px 200px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-duration: 3s;
+  animation-name: animationgradienttitle;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 nav{
   width: 100%;

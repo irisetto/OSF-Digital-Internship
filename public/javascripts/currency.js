@@ -14,7 +14,7 @@ const symbols = {
     RON: ' RON ',
     GBP: ' £ ',
   };
-currencySelector.addEventListener('change', () => {
+currencySelector?.addEventListener('change', () => {
   const selectedCurrency = currencySelector.value;
   const exchangeRate = exchangeRates[selectedCurrency];
   const originalPrice = parseFloat(priceAmount.textContent);

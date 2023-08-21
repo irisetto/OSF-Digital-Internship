@@ -36,6 +36,7 @@ router.use(async function(req, res, next) {
   const CategoryModel = require('../models/category')
   const allCategories = await CategoryModel.find({}).lean();
   res.locals.categories = allCategories;
+  res.locals.projectTitle = 'OSF Shop';
   next();
 } catch (err) {
     console.error('Error fetching categories:', err);

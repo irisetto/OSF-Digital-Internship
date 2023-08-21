@@ -21,12 +21,10 @@ mongoose.connect(url,connectionParams)
   return await ProductModel.findOne({id: '25720078'});
 }
 
-/* GET home page. */
 router.get('/', async function(req, res, next) {
   const product = await retrieveDocument();
-  console.log(product)
-  console.log(product.image_groups[0].images[0].link)
-  res.render('index', { title: 'Express', product: product, productImg: 'images/' + product.image_groups[0].images[0].link});
+ 
+  res.render('index', { title: 'OSF Shop'});
 });
 
 module.exports = router;
