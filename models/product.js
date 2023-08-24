@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../utils/db");
 
 const productSchema = new mongoose.Schema({
     price_max: {

@@ -16,21 +16,7 @@ const footer = fs.readFileSync(footerPath, 'utf8');
   handlebars.registerPartial('menu', menu); 
   handlebars.registerPartial('footer', footer);
   handlebars.registerPartial('head', head);
-  const url = "mongodb+srv://cohmanteodora:student@osf-shop.xxyx0jj.mongodb.net/shop";
-   const mongoose = require('mongoose')
-   const connectionParams={
-    useNewUrlParser: true,
-   
-    useUnifiedTopology: true 
-}
-mongoose.connect(url,connectionParams)
-    .then( () => {
-        console.log('Connected to the database ')
-    })
-    .catch( (err) => {
-        console.error(`Error connecting to the database. n${err}`);
-    })
-
+  
 router.use(async function(req, res, next) {
     try {
   const CategoryModel = require('../models/category')

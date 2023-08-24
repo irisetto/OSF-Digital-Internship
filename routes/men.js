@@ -1,19 +1,5 @@
 var express = require("express");
 var router = express.Router();
-const url = "mongodb+srv://cohmanteodora:student@osf-shop.xxyx0jj.mongodb.net/shop";
-const mongoose = require('mongoose')
-const connectionParams={
- useNewUrlParser: true,
-
- useUnifiedTopology: true 
-}
-mongoose.connect(url,connectionParams)
- .then( () => {
-     console.log('Connected to the database ')
- })
- .catch( (err) => {
-     console.error(`Error connecting to the database. n${err}`);
- })
 
 const CategoryModel = require("../models/category");
 const ProductModel = require("../models/product");
