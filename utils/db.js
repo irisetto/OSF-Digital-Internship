@@ -1,6 +1,5 @@
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-console.log(username+" "+password);
 const url = `mongodb+srv://${username}:${password}@osf-shop.xxyx0jj.mongodb.net/shop`;
 const mongoose = require('mongoose')
 const connectionParams={

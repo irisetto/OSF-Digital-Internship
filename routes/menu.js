@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs'); 
+const categoryController = require("../controllers/categoryController");
 
 const handlebars = require('hbs')
 const viewsDirectory = path.resolve(__dirname, '..');
@@ -17,17 +18,6 @@ const footer = fs.readFileSync(footerPath, 'utf8');
   handlebars.registerPartial('footer', footer);
   handlebars.registerPartial('head', head);
   
-router.use(async function(req, res, next) {
-    try {
-  const CategoryModel = require('../models/category')
-  const allCategories = await CategoryModel.find({}).lean();
-  res.locals.categories = allCategories;
-  res.locals.projectTitle = 'OSF Shop';
-  next();
-} catch (err) {
-    console.error('Error fetching categories:', err);
-    res.status(500).send('Internal Server Error');
-  }
-});
+router.use(categoryController.getMenuCateg);
 
 module.exports = router;

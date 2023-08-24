@@ -5,10 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var menRouter = require('./routes/men');
-var womenRouter = require('./routes/women');
-
+var categoryRouter = require('./routes/category');
 var menuRouter = require('./routes/menu');
 
 var app = express();
@@ -17,24 +14,22 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('debug', true);
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(menuRouter);
 app.use('/', indexRouter);
-app.use('/mens', menRouter);
-app.use('/mens/:category', menRouter);
-app.use('/mens/:category/:subcategory', menRouter);
-app.use('/mens/:category/:subcategory/:productID', menRouter);
+app.param('root', (req, res, next, root) => {
+  req.root = root; // Store the value of 'root' in the request object
+  next();
+});
 
-app.use('/womens', womenRouter);
-app.use('/womens/:category', womenRouter);
-app.use('/womens/:category/:subcategory', womenRouter);
-app.use('/womens/:category/:subcategory/:productID', womenRouter);
+app.use('/:root', categoryRouter);
+app.use('/:root/:category', categoryRouter);
+app.use('/:root/:category/:subcategory', categoryRouter);
+app.use('/:root/:category/:subcategory/:productID', categoryRouter);
 
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

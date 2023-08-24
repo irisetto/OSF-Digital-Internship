@@ -1,6 +1,6 @@
 <div class="products-page">
 
-  <p>Home/{{linkCateg}}/{{linkCateg2}}/{{linkSubcateg}}</p>
+  <p>Home/{{categoryName}}/{{subcategoryName}}/{{productsName}}</p>
 
   <ul class="products-list">
     {{#each products}}
@@ -32,7 +32,7 @@
             {{#ifeq this.currency "USD"}}
             <p>Price: $ {{this.price}}</p>
             {{/ifeq}}
-            <a href="/{{../rootRoute}}/{{../linkCateg2ID}}/{{this.primary_category_id}}/{{this.id}}" class="more-info">
+            <a href="/{{../rootRoute}}/{{../subcategoryNameID}}/{{this.primary_category_id}}/{{this.id}}" class="more-info">
               <button class="more-info view-products">More Info</button>
             </a>
           </div>
