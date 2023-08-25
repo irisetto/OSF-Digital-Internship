@@ -1,24 +1,24 @@
 const categoryFunctions = require("../mongoFunctions/categoryFunctions");
 const productFunctions = require("../mongoFunctions/productFunctions");
+const soapFunctions = require("./soap");
 
 exports.getMenuCateg = async (req, res, next) => {
-    try {
-  const allCategories = await categoryFunctions.findAllCategories();
-  res.locals.categories = allCategories;
-  res.locals.projectTitle = 'OSF Shop';
-  next();
-} catch (err) {
-    console.error('Error fetching categories:', err);
-    res.status(500).send('Internal Server Error');
+  try {
+    const allCategories = await categoryFunctions.findAllCategories();
+    res.locals.categories = allCategories;
+    res.locals.projectTitle = "OSF Shop";
+    next();
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+    res.status(500).send("Internal Server Error");
   }
-}
-
+};
 
 exports.getCategory = async (req, res, next) => {
   try {
     const category = await categoryFunctions.findCategoryById(req.root);
     res.render("category", {
-      title: category.name,
+      title: category?.name,
       category: category,
     });
   } catch (err) {
@@ -67,11 +67,10 @@ exports.getProducts = async (req, res, next) => {
       subcategory
     );
     const category = await categoryFunctions.findCategoryById(req.root);
-
     res.render("products", {
       title: productsName,
-      rootRoute: category.id,
-      categoryName: category.name,
+      rootRoute: category?.id,
+      categoryName: category?.name,
       subcategoryName: subcategoryName?.name,
       subcategoryNameID: subcategoryName?.id,
       productsName: productsName,
@@ -96,11 +95,13 @@ exports.getProduct = async (req, res, next) => {
       category,
       subcategory
     );
-
+    const currencies = await soapFunctions.fetchAvailableCurrencies();
+      
     res.render("product", {
       title: product.name,
       subcategName: productsName,
       product: product,
+      currencies: currencies,
     });
   } catch (err) {
     console.error("Error fetching products:", err);

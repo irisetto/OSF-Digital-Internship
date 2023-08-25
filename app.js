@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
 var menuRouter = require('./routes/menu');
+var currencyRouter = require('./routes/currency');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.param('root', (req, res, next, root) => {
   req.root = root; // Store the value of 'root' in the request object
   next();
 });
+app.use('/api',currencyRouter);
 
 app.use('/:root', categoryRouter);
 app.use('/:root/:category', categoryRouter);

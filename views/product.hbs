@@ -28,10 +28,9 @@
         <div class="price-container">
           <p class="price">Price:<span class="currency-symbol"> $ </span><span class="price-amount">{{product.price}}</span></p>
            <select id="currency-selector">
-      <option value="USD" >USD</option>
-      <option value="EUR">EUR</option>
-      <option value="RON" >RON</option>
-      <option value="GBP">GBP</option>
+            {{#each currencies}}
+      <option value='{{this}}' {{#ifeq this "USD"}}selected{{/ifeq}}>{{this}}</option>
+      {{/each}}
     </select>
     </div>
       </div>
