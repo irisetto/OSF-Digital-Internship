@@ -15,7 +15,7 @@ exports.fetchAvailableCurrencies = async () => {
 
           // Extract currency codes from the response
           const currencies =
-            result.getallResult.diffgram.DocumentElement.Currency.map(
+            result.getallResult.diffgram?.DocumentElement?.Currency.map(
               (currency) => currency.IDMoneda
             );
           resolve(currencies);
