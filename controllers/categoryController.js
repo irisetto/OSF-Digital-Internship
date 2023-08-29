@@ -95,8 +95,12 @@ exports.getProduct = async (req, res, next) => {
       category,
       subcategory
     );
-    const currencies = await soapFunctions.fetchAvailableCurrencies();
-      
+   // const currencies = await soapFunctions.fetchAvailableCurrencies();
+     const currencies = [
+      'AED', 'AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EGP',
+      'EUR', 'GBP', 'HUF', 'INR', 'JPY', 'KRW', 'MDL', 'MXN', 'NOK', 'NZD',
+      'PLN','RON', 'RSD', 'RUB', 'SEK', 'THB', 'TRY', 'UAH', 'USD', 'XAU', 'XDR', 'ZAR'
+    ]; 
     res.render("product", {
       title: product.name,
       subcategName: productsName,

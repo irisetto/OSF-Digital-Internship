@@ -12,7 +12,7 @@ exports.fetchAvailableCurrencies = async () => {
           if (err) {
             console.error(err);
           }
-
+            console.log(result);
           // Extract currency codes from the response
           const currencies =
             result.getallResult.diffgram?.DocumentElement?.Currency.map(
